@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if object %}Отредактировать{% else %}Создать{% endif %} новость</title>
+</head>
+<body>
+    <h1>{% if object %}Отредактировать{% else %}Создать{% endif %} новость</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{% url 'news:list' %}">Отменить</a>
+</body>
+</html>

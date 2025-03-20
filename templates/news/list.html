@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Новости</title>
+</head>
+<body>
+    <h1>Новости</h1>
+    <a href="{% url 'news:create' %}">Создать новость</a>
+    <ul>
+        {% for article in news %}
+        <li>
+            <a href="{% url 'news:detail' article.pk %}">{{ article.title }}</a> ({{ article.published_at|date:"d.m.Y H:i" }})
+            <a href="{% url 'news:edit' article.pk %}">Отредактировать</a>
+            <form action="{% url 'news:delete' article.pk %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
